@@ -7,15 +7,17 @@
       -ms-flex-direction: column;
           flex-direction: column;
   color: white;
-  font-weight: 600;
+  font-weight: 300;
   background-color: #3F4259;
 }
 
 .weather-container .time-date-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 20px;
+  font-size: 1.6em;
+  text-align: center;
+}
+
+.weather-container .time-date-container .col-top {
+  font-weight: 600;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -52,6 +54,25 @@
 }
 
 .weather-container .time,
-.weather-container .date {
-  font-size: 2em;
+.weather-container .month,
+.weather-container .day {
+  margin: 0;
+  font-size: 1.8em;
+}
+
+.blink {
+  animation: blink-animation 2s steps(5, start) infinite;
+  -webkit-animation: blink-animation 2s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }

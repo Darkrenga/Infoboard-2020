@@ -2,12 +2,15 @@
     display: flex;
     flex-direction: column;
     color: white;
-    font-weight: 600;
+    font-weight: 300;
     background-color: #3F4259;
     .time-date-container {
-        display: flex;
-    font-size: 20px;
-        justify-content: space-between;
+        font-size: 1.6em;
+        text-align: center;
+        .col-top {
+            font-weight: 600;
+            justify-content: space-between;
+        }
     }
     .temp-summary-container {
         display: flex;
@@ -30,8 +33,24 @@
         }
     }
     .time,
-    .date {
-        font-size: 2em;
+    .month,
+    .day {
+        margin: 0;
+        font-size: 1.8em;
     }
 }
 
+.blink {
+    animation: blink-animation 2s steps(5, start) infinite;
+    -webkit-animation: blink-animation 2s steps(5, start) infinite;
+  }
+  @keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+  @-webkit-keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
