@@ -116,6 +116,7 @@
 
 #activity-widget .card p.topic {
   width: 30%;
+  text-transform: capitalize;
 }
 
 .aktiviteter-container {
