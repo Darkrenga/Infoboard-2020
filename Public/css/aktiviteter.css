@@ -43,6 +43,7 @@
 }
 
 #activity-widget .classes {
+  font-weight: 700;
   width: calc(100% / 3);
   height: 5vh;
   text-shadow: 0px 1px 5px black;
@@ -112,11 +113,16 @@
 #activity-widget .card p.time {
   width: 20%;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 20px;
   margin: 5px 0;
   background-position: center;
   background-size: cover;
   text-shadow: 0px 1px 3px black;
+}
+
+#activity-widget .card p.time:first-of-type {
+  text-shadow: none;
+  font-size: 16px;
 }
 
 #activity-widget .card p.location {
