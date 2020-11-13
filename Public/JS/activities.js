@@ -106,7 +106,7 @@ async function buildActivitiesView() {
 
         //dette gør at hvis der ikke findet et friendly_name så bruger den bare det normale name
         let topic = item[4];
-            if (item[4] == '') {
+            if (item[4] == '' || item[4] == null) {
                 topic = item[3];
             }
 
