@@ -22,14 +22,14 @@ function sortContent(data) {
 
         if (shortenString.length >= 250) {
             shortenString = shortenString + '...';
-            
+
         }
-        
+
         shortenString = shortenString + '...';
         let qrCode = createQrCode(shortenString)
 
 
-        let date = result.datetime.slice(0, 10)
+        let date = result.datetime.slice(0, 10).split('-').reverse().join('-');
         checkForLength(result.title, date, shortenString, qrCode)
     }
 }
@@ -43,7 +43,6 @@ function createQrCode(value) {
 function checkForLength(title, date, string, qrCode) {
     let newsCard = document.createElement('div');
     newsCard.setAttribute('class', 'newsCard')
-
 
     newsCard.innerHTML += `
         <p class="news-date">${date}</p>
