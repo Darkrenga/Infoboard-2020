@@ -2,12 +2,13 @@
     display: flex;
     flex-direction: column;
     color: white;
-    font-weight: 600;
+    font-weight: 300;
     background-color: #3F4259;
     .time-date-container {
-        font-size: 1.2em;
+        font-size: 1.6em;
+        text-align: center;
         .col-top {
-            display: flex;
+            font-weight: 600;
             justify-content: space-between;
         }
     }
