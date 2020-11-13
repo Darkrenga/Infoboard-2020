@@ -14,31 +14,50 @@
 
 #activity-widget .we {
   background-color: #d64643;
+  background-image: url("/Public/img/wu.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 #activity-widget .gr, #activity-widget .ggr {
   background-color: #4d72a6;
+  background-image: url("/Public/img/gt.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 #activity-widget .dm {
   background-color: #88a63e;
+  background-image: url("/Public/img/dm.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 #activity-widget .mg {
   background-color: #90368b;
+  background-image: url("/Public/img/mg.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 #activity-widget .iw {
   background-color: #bdbdbd;
+  background-image: url("/Public/img/default.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 #activity-widget .agr, #activity-widget .abi {
   background-color: #b4b338;
+  background-image: url("/Public/img/eu.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 #activity-widget .classes {
   width: calc(100% / 3);
   height: 5vh;
+  text-shadow: 0px 1px 5px black;
 }
 
 #activity-widget .card {
@@ -104,6 +123,8 @@
   width: 20%;
   font-weight: 700;
   font-size: 16px;
+  margin: 5px 0;
+  text-shadow: 0px 1px 3px black;
 }
 
 #activity-widget .card p.location {
