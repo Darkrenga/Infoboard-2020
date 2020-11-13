@@ -118,7 +118,7 @@ async function buildActivitiesView() {
                 `<li class="card">
                     <p class="time ${classShorthands[i]}">${time}</p> 
                     <p class="location">${item[1]}</p> 
-                    <p class="class">Må vi gå hjem?</p> 
+                    <p class="class">${classs}</p> 
                     <p class="topic">${topic}</p>
                 </li>`;
                 break;
