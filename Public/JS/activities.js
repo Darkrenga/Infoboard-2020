@@ -91,7 +91,7 @@ async function buildActivitiesView() {
     activityWidget.innerHTML = 
         `<li class="card">
             <p class="time">Tid</p> 
-            <p class="location">Klasse</p> 
+            <p class="location">Lokale</p> 
             <p class="class">Hold</p> 
             <p class="topic">Fag</p>
         </li>`;
