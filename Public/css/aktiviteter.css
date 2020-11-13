@@ -79,6 +79,11 @@
   font-weight: 700;
 }
 
+#activity-widget .card:first-of-type .time {
+  text-shadow: none;
+  font-size: 16px;
+}
+
 #activity-widget .card:first-of-type > p {
   margin: 5px 0 5px;
   padding: 0;
@@ -118,11 +123,6 @@
   background-position: center;
   background-size: cover;
   text-shadow: 0px 1px 3px black;
-}
-
-#activity-widget .card p.time:first-of-type {
-  text-shadow: none;
-  font-size: 16px;
 }
 
 #activity-widget .card p.location {
