@@ -97,7 +97,7 @@ function updateClock() {
 function buildIcon(data) {
     const {icon} = data.currently;                  
     // Call getIcon
-    document.querySelector('.icon').src = '/Public/img/svg/weather/' + getIcon(icon) 
+    document.querySelector('.icon').src = '../img/svg/weather/' + getIcon(icon) 
 }
 // Check current date and return appropriate src string
 function getIcon(icon) {
