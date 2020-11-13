@@ -1,3 +1,3 @@
 setTimeout(() => {
-locaton.reload();
-}, 1000*60);
+location.reload();
+}, 1000*30);
