@@ -106,12 +106,11 @@ $duration: 80s;
     display: grid;
     -ms-grid-columns: 5% auto;
     grid-template-columns: 5% auto;
-    align-items: center;
+    
     overflow: hidden;
     background-color: #414B6C;
     grid-area: ticker;
     height: 71px;
-    margin-top: 5vh;
     width: 100%;
     
     img{

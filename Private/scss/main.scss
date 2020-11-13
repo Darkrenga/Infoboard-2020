@@ -31,7 +31,7 @@ body {
     color: #FFFFFF ;
     display: grid;
     grid-template-columns: 2fr 5fr 4fr;
-    grid-template-rows: auto;
+    grid-template-rows: auto 71px;
     grid-template-areas: 
     "data aktiviteter info"
     "data ticker ticker";
