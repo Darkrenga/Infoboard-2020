@@ -15,43 +15,31 @@
 #activity-widget .we {
   background-color: #d64643;
   background-image: url("/Public/img/wu.jpg");
-  background-position: center;
-  background-size: cover;
 }
 
 #activity-widget .gr, #activity-widget .ggr {
   background-color: #4d72a6;
   background-image: url("/Public/img/gt.jpg");
-  background-position: center;
-  background-size: cover;
 }
 
 #activity-widget .dm {
   background-color: #88a63e;
   background-image: url("/Public/img/dm.jpg");
-  background-position: center;
-  background-size: cover;
 }
 
 #activity-widget .mg {
   background-color: #90368b;
   background-image: url("/Public/img/mg.jpg");
-  background-position: center;
-  background-size: cover;
 }
 
 #activity-widget .iw {
   background-color: #bdbdbd;
   background-image: url("/Public/img/default.jpg");
-  background-position: center;
-  background-size: cover;
 }
 
 #activity-widget .agr, #activity-widget .abi {
   background-color: #b4b338;
   background-image: url("/Public/img/eu.jpg");
-  background-position: center;
-  background-size: cover;
 }
 
 #activity-widget .classes {
@@ -78,10 +66,12 @@
   text-align: center;
   color: #fff;
   height: 5vh;
+  padding-left: 5px;
 }
 
 #activity-widget .card:last-child {
   margin-top: 13px;
+  padding-left: 0;
 }
 
 #activity-widget .card:first-of-type {
@@ -94,7 +84,7 @@
   border-right: 1px solid #fff;
 }
 
-#activity-widget .card:first-of-type > p:first-of-type, #activity-widget .card:first-of-type > p:last-of-type {
+#activity-widget .card:first-of-type > p:last-of-type {
   border: none;
 }
 
@@ -124,6 +114,8 @@
   font-weight: 700;
   font-size: 16px;
   margin: 5px 0;
+  background-position: center;
+  background-size: cover;
   text-shadow: 0px 1px 3px black;
 }
 
