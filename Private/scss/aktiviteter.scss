@@ -42,6 +42,7 @@ $color-gf1: #bdbdbd;
         background-image: url('/Public/img/eu.jpg');
     }
     .classes {
+        font-weight: 700;
         width: calc(100% / 3);
         height: 5vh;
         text-shadow: 0px 1px 5px rgba(0, 0, 0, 1);
@@ -94,11 +95,16 @@ $color-gf1: #bdbdbd;
             &.time {
                 width: 20%;
                 font-weight: 700;
-                font-size: 16px;
+                font-size: 20px;
                 margin: 5px 0;
                 background-position: center;
                 background-size: cover;
                 text-shadow: 0px 1px 3px rgba(0, 0, 0, 1);
+
+                &:first-of-type {
+                    text-shadow: none;
+                    font-size: 16px;
+                }
             }
 
             &.location {
