@@ -14,30 +14,49 @@ $color-gf1: #bdbdbd;
 
     .we {
         background-color: $color-we;
+        background-image: url('/Public/img/wu.jpg');
+        background-position: center;
+        background-size: cover;
     }
 
     .gr, .ggr {
         background-color: $color-gr;
+        background-image: url('/Public/img/gt.jpg');
+        background-position: center;
+        background-size: cover;
     }
 
     .dm {
         background-color: $color-dm;
+        background-image: url('/Public/img/dm.jpg');
+        background-position: center;
+        background-size: cover;
     }
 
     .mg {
         background-color: $color-mg;
+        background-image: url('/Public/img/mg.jpg');
+        background-position: center;
+        background-size: cover;
     }
 
     .iw {
         background-color: $color-gf1;
+        background-image: url('/Public/img/default.jpg');
+        background-position: center;
+        background-size: cover;
     }
 
     .agr, .abi {
         background-color: $color-amu;
+        background-image: url('/Public/img/eu.jpg');
+        background-position: center;
+        background-size: cover;
     }
     .classes {
         width: calc(100% / 3);
         height: 5vh;
+        text-shadow: 0px 1px 5px rgba(0, 0, 0, 1);
     }
     .card {
         width: 100%;
@@ -86,6 +105,8 @@ $color-gf1: #bdbdbd;
                 width: 20%;
                 font-weight: 700;
                 font-size: 16px;
+                margin: 5px 0;
+                text-shadow: 0px 1px 3px rgba(0, 0, 0, 1);
             }
 
             &.location {
