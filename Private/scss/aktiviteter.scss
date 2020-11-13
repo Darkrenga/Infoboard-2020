@@ -46,6 +46,8 @@ $color-gf1: #bdbdbd;
         width: calc(100% / 3);
         height: 5vh;
         text-shadow: 0px 1px 5px rgba(0, 0, 0, 1);
+        background-position: center;
+        background-size: cover;
     }
     .card {
         width: 100%;
