@@ -31,7 +31,7 @@ function loadingscreen(){
     loadingContainer.appendChild(loadingtext);
     
     loadingicon = document.createElement('img');
-    loadingicon.src="img/loading.svg";
+    loadingicon.src="../img/loading.svg";
     loadingContainer.appendChild(loadingicon);
 
     const post = document.getElementById('bus-post');
@@ -48,7 +48,7 @@ function buildview(out){
     busContainer.appendChild(containerHeader);
 
     const containerHeaderImg = document.createElement('img');
-    containerHeaderImg.src = "img/busser.png";
+    containerHeaderImg.src = "../img/busser.png";
     containerHeader.appendChild(containerHeaderImg);
 
     const containerHeaderText = document.createElement('h2');
