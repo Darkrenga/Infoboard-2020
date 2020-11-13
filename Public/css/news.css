@@ -2,6 +2,7 @@
   padding: 12px 0 0 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  margin-right: 13px;
 }
 
 .middleSection .info {
@@ -9,7 +10,7 @@
   display: grid;
   -ms-grid-columns: 10% auto;
       grid-template-columns: 10% auto;
-  width: 34.3vw;
+  width: 100%;
   background-color: #3F4259;
   height: 6.5vh;
   margin-bottom: 13px;
@@ -31,7 +32,7 @@
 }
 
 .middleSection #player {
-  width: 34.5vw;
+  width: 100%;
   height: 311px;
   background-color: #3F4259;
   margin-bottom: 13px;
@@ -50,7 +51,7 @@
   height: auto;
   margin-bottom: 13px;
   padding-top: 10px;
-  width: 34.5vw;
+  width: 100%;
   background-color: #3F4259;
 }
 
@@ -121,20 +122,15 @@
   display: grid;
   -ms-grid-columns: 5% auto;
   grid-template-columns: 5% auto;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: absolute;
   overflow: hidden;
-  right: 0;
-  bottom: 0;
-  height: 71px;
   background-color: #414B6C;
-  width: 81.2vw;
+  grid-area: ticker;
+  height: 71px;
+  width: 100%;
 }
 
 .ticker-wrap img {
-  height: 71px;
+  height: 100%;
   z-index: 2;
 }
 
