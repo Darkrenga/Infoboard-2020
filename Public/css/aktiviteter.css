@@ -122,6 +122,8 @@
 .aktiviteter-container {
   grid-area: aktiviteter;
   padding-top: 12px;
+  margin-left: 13px;
+  margin-right: 13px;
 }
 
 .aktiviteter-container .header {

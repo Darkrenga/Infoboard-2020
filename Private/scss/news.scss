@@ -7,11 +7,12 @@ $duration: 80s;
 .middleSection{
     padding: 12px 0 0 0;
     box-sizing: border-box;
+    margin-right: 13px;
 
     .info{
         display: grid;
         grid-template-columns: 10% auto;
-        width: 34.3vw;
+        width: 100%;
         background-color: $card-color;
         height: 6.5vh;
         margin-bottom: 13px;
@@ -32,7 +33,7 @@ $duration: 80s;
         }
     }
     #player{
-        width: 34.5vw;
+        width: 100%;
         height: 311px;
         background-color: $card-color;
         margin-bottom: 13px;
@@ -48,7 +49,7 @@ $duration: 80s;
         height: auto;
         margin-bottom: 13px;
         padding-top: 10px;
-        width: 34.5vw;
+        width: 100%;
         background-color: $card-color;
 
         .news-date {
@@ -106,15 +107,14 @@ $duration: 80s;
     -ms-grid-columns: 5% auto;
     grid-template-columns: 5% auto;
     align-items: center;
-    position: absolute;
     overflow: hidden;
-    right: 0;
-    bottom: 0;
-    height: 71px;
     background-color: #414B6C;
-    width: 81.2vw;
+    grid-area: ticker;
+    height: 100%;
+    width: 100%;
+    
     img{
-        height: 71px;
+        height: 100%;
         z-index: 2;
     }
   .ticker {
