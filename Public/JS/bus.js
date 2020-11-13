@@ -31,7 +31,7 @@ function loadingscreen(){
     loadingContainer.appendChild(loadingtext);
     
     loadingicon = document.createElement('img');
-    loadingicon.src="../img/loading.svg";
+    loadingicon.src="../img/svg/loading.svg";
     loadingContainer.appendChild(loadingicon);
 
     const post = document.getElementById('bus-post');
