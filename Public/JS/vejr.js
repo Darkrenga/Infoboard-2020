@@ -67,7 +67,7 @@ function buildView(temperature, skyText) {
 
 function updateClock() {
     // Declare new Date
-    let days = ['Søn', 'Man', 'Tir', 'Ons', 'Tors', 'Fredag', 'Lør'];
+    let days = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
     let  months = ["Jan", "Feb", "Mar", "Apr", "Maj", "jun", "jul", "Aug", "Sep", "Okt", "November", "Dec"];
     
 
