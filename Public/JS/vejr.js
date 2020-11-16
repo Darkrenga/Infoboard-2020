@@ -68,7 +68,7 @@ function buildView(temperature, skyText) {
 function updateClock() {
     // Declare new Date
     let days = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
-    let  months = ["Jan", "Feb", "Mar", "Apr", "Maj", "jun", "jul", "Aug", "Sep", "Okt", "November", "Dec"];
+    let  months = ["januar", "febuar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"];
     
 
     let today = new Date();
@@ -77,7 +77,7 @@ function updateClock() {
     let hr = String(today.getHours()).padStart(2, '0');
     let min = String(today.getMinutes()).padStart(2, '0');
     let dd = String(today.getDate()).padStart(2, '0');
-    month = `${dayName} d. ${dd} ${monthName}`;
+    month = `${dayName} d. ${dd}. ${monthName}`;
 
     para = ':';
     document.querySelector('.month').innerHTML = month;
