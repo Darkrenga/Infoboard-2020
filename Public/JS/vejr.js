@@ -59,7 +59,6 @@ fetch(apiUrl2)
 /// View ///
 
 function buildView(temperature, skyText) {
-    console.log('lol')
     document.querySelector('.temp').innerHTML = temperature + '&#176';
     document.querySelector('.summary').innerHTML = skyText;
     
