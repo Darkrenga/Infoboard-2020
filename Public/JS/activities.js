@@ -33,7 +33,7 @@ async function loadData() {
 
     //her sætter vi data'ene fra fetchData i et array
     let activityArr = [...await fetchData()];
-    let amountOfActivities = 15;
+    let amountOfActivities = 13;
 
     //her finder vi ud af hvilket interval vi er i (hvor vi er i arrayet classTimes)
     const currentTimeOfDay = classTimes.filter(obj => obj.start <= currentTime && obj.end >= currentTime);
@@ -45,7 +45,7 @@ async function loadData() {
     if (currentTimeOfDay.length) {
         listOfActivities = activityArr.filter(activity =>
             activity.timestamp >= currentTimeOfDay[0].start);
-                listOfActivities = listOfActivities.filter((activity, idx) => idx < amountOfActivities - 2);
+                listOfActivities = listOfActivities.filter((activity, idx) => idx < amountOfActivities);
 
                 if(!listOfActivities.length) {
                     getFirstActivities()
