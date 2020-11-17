@@ -111,16 +111,16 @@ function getIcon(icon) {
         // If status === case => then return matching weather icon 
         case 'clear-day': return "sunny.jpg";
         case 'clear-night': return "sunny.jpg";
-        case 'partly-cloudy-day': return "sunny.jpg";
-        case 'partly-cloudy-night': return "sunny.jpg";
-        case 'cloudy': return "sunny.jpg";
-        case 'lightrain': return "sunny.jpg";
-        case 'occasionalshowers': return "sunny.jpg";
-        case 'rain': return "sunny.jpg";
-        case 'sleet': return "sunny.jpg";
-        case 'snow': return "sunny.jpg";
-        case 'wind': return "sunny.jpg";
-        case 'fog': return "sunny.jpg";
+        case 'partly-cloudy-day': return "partly-cloudy.jpg";
+        case 'partly-cloudy-night': return "partly-cloudy.jpg";
+        case 'cloudy': return "cloudy.jpg";
+        case 'lightrain': return "light-rain.jpg";
+        case 'occasionalshowers': return "rain.jpg";
+        case 'rain': return "rain.jpg";
+        case 'sleet': return "snow.jpg";
+        case 'snow': return "snow.jpg";
+        case 'wind': return "windy.jpg";
+        case 'fog': return "foggy.jpg";
 
         default: return "";       
     }
