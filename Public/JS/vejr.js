@@ -15,10 +15,13 @@ let getWeatherData = fetchData(vejrEuUrl, darkSkyUrl)
 console.log("fetching data");
 
 
+const closureFunc = fetchData
+closureFunc()
 
 
 
-function fecthData (apiUrl1, apiUrl2) {
+
+function fetchData (apiUrl1, apiUrl2) {
     /// 1§ VEJR EU API
 // GET => temperature & skyText
 fetch(apiUrl1) 
@@ -31,6 +34,7 @@ fetch(apiUrl1)
     const {temperature, skyText} = data.CurrentData;
     
     buildView(temperature, skyText)
+    
 })
 .catch(
 );
@@ -55,8 +59,8 @@ fetch(apiUrl2)
 /// View ///
 
 function buildView(temperature, skyText) {
-    
-    document.querySelector('.temp').innerHTML = temperature + '&#176';
+    console.log('lol')
+    document.querySelector('.temp').innerHTML = 'hey';
     document.querySelector('.summary').innerHTML = skyText;
     
     // Update weather every 30min
