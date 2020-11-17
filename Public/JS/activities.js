@@ -9,7 +9,7 @@ async function fetchData() {
 };
 
 //dette bruges til at ændre vores nuværende klokkeslet
-const addHours = 0;
+const addHours = 4;
 const addSeconds = 3600 * addHours;
 
 //dette er vores nuværende klokkeslet (timestamp)
@@ -87,6 +87,10 @@ async function buildActivitiesView() {
     //her deklererer vi en variabel som er vores activityWidget
     let activityWidget = document.querySelector("#activity-widget");
 
+    let thisDay = new Date();
+    let days = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
+    let months = ['januar', 'febuar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december'];
+
     //da der altid skal ligge en liste i toppen af widgeten, så indsætter vi den her.
     activityWidget.innerHTML = 
         `<li class="card">
@@ -94,6 +98,9 @@ async function buildActivitiesView() {
             <p class="location">Lokale</p> 
             <p class="class">Hold</p> 
             <p class="topic">Fag</p>
+        </li>
+        <li class="card">
+            <p class="">Nuværende skoledag - ${days[thisDay.getDay()]} d. ${thisDay.getDate()}. ${months[thisDay.getMonth()]}</p> 
         </li>`;
 
         let today = new Date();
@@ -117,9 +124,6 @@ async function buildActivitiesView() {
 
         let classShorthands = ['we', 'ggr', 'agr', 'abi', 'gr', 'dm', 'mg', 'iw']; //array med forkortelser af navne for klasserne
 
-        let days = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
-        let months = ['januar', 'febuar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december'];
-
         for (let i = 0; i < classShorthands.length; i++) {
             if(classs.search(classShorthands[i]) >= 0) {
                 // activityWidget.innerHTML += 
@@ -131,17 +135,12 @@ async function buildActivitiesView() {
                 // </li>`;
 
                 if (new Date(parseInt(item[0]) * 1000).getDate() >= tomorrow.getDate() && tomorrowMet == 0) {
-                    console.log('første dato i morgen')
-                    
-                    let thisDay = new Date(item[0]*1000);
-                    let thisWeekDay = thisDay.getDay();
-                    let thisMonth = thisDay.getMonth();
-                    let thisDato = thisDay.getDate();
+                    thisDay = new Date(item[0] * 1000);
 
                     tomorrowMet = 1;
                     activityWidget.innerHTML += 
                     `<li class="card">
-                        <p class="">Næste skoledag - ${days[thisWeekDay]} d. ${thisDato}. ${months[thisMonth]}</p> 
+                        <p class="">Næste skoledag - ${days[thisDay.getDay()]} d. ${thisDay.getDate()}. ${months[thisDay.getMonth()]}</p> 
                     </li>
                     <li class="card">
                         <p class="time ${classShorthands[i]}">${time}</p> 
