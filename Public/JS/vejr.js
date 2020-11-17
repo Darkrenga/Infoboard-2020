@@ -60,7 +60,7 @@ fetch(apiUrl2)
 
 function buildView(temperature, skyText) {
     console.log('lol')
-    document.querySelector('.temp').innerHTML = 'hey';
+    document.querySelector('.temp').innerHTML = temperature + '&#176';
     document.querySelector('.summary').innerHTML = skyText;
     
     // Update weather every 30min
