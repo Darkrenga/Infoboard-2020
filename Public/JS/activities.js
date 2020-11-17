@@ -9,7 +9,7 @@ async function fetchData() {
 };
 
 //dette bruges til at ændre vores nuværende klokkeslet
-const addHours = 4;
+const addHours = 0;
 const addSeconds = 3600 * addHours;
 
 //dette er vores nuværende klokkeslet (timestamp)
@@ -87,10 +87,6 @@ async function buildActivitiesView() {
     //her deklererer vi en variabel som er vores activityWidget
     let activityWidget = document.querySelector("#activity-widget");
 
-    let thisDay = new Date();
-    let days = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
-    let months = ['januar', 'febuar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december'];
-
     //da der altid skal ligge en liste i toppen af widgeten, så indsætter vi den her.
     activityWidget.innerHTML = 
         `<li class="card">
@@ -98,15 +94,17 @@ async function buildActivitiesView() {
             <p class="location">Lokale</p> 
             <p class="class">Hold</p> 
             <p class="topic">Fag</p>
-        </li>
-        <li class="card">
-            <p class="">Nuværende skoledag - ${days[thisDay.getDay()]} d. ${thisDay.getDate()}. ${months[thisDay.getMonth()]}</p> 
         </li>`;
 
-        let today = new Date();
-        let tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
-        let tomorrowMet = 0;
+    // Variabler til at undersøge om aktiviteten afvikles dagsdato eller senere
+    let today = new Date(); // Dagsdato
+    let tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1); // 24 timer fra nu
+    let tomorrowMet = 0; // Sættes til 1 når første aktivitet fra senere er fundet
+
+    // Arrays med navne på dage og måneder
+    let days = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
+    let months = ['januar', 'febuar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december'];
 
     //da aktiviteterne ændrer sig iforhold til tiderne på dagen, så laves de her.
     for (item of activeActivities) {
@@ -126,21 +124,13 @@ async function buildActivitiesView() {
 
         for (let i = 0; i < classShorthands.length; i++) {
             if(classs.search(classShorthands[i]) >= 0) {
-                // activityWidget.innerHTML += 
-                // `<li class="card">
-                //     <p class="time ${classShorthands[i]}">${time}</p> 
-                //     <p class="location">${item[1]}</p> 
-                //     <p class="class">${classs}</p> 
-                //     <p class="topic">${topic}</p>
-                // </li>`;
+                if (new Date(parseInt(item[0]) * 1000).getDate() >= tomorrow.getDate() && tomorrowMet == 0) { // Hvis aktivitets dato er lig med eller større end dato i morgen
+                    let comingClassDay = new Date(item[0] * 1000); // Aktivites timestamp laves til dato
 
-                if (new Date(parseInt(item[0]) * 1000).getDate() >= tomorrow.getDate() && tomorrowMet == 0) {
-                    thisDay = new Date(item[0] * 1000);
-
-                    tomorrowMet = 1;
+                    tomorrowMet = 1; // Sættes til 1 så if sætningens betingelser ikke mødes igen
                     activityWidget.innerHTML += 
                     `<li class="card">
-                        <p class="">Næste skoledag - ${days[thisDay.getDay()]} d. ${thisDay.getDate()}. ${months[thisDay.getMonth()]}</p> 
+                        <p class="">Næste skoledag - ${days[comingClassDay.getDay()]} d. ${comingClassDay.getDate()}. ${months[comingClassDay.getMonth()]}</p> 
                     </li>
                     <li class="card">
                         <p class="time ${classShorthands[i]}">${time}</p> 
