@@ -117,7 +117,8 @@ async function buildActivitiesView() {
 
         let classShorthands = ['we', 'ggr', 'agr', 'abi', 'gr', 'dm', 'mg', 'iw']; //array med forkortelser af navne for klasserne
 
-        
+        let days = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
+        let months = ['januar', 'febuar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december'];
 
         for (let i = 0; i < classShorthands.length; i++) {
             if(classs.search(classShorthands[i]) >= 0) {
@@ -129,12 +130,18 @@ async function buildActivitiesView() {
                 //     <p class="topic">${topic}</p>
                 // </li>`;
 
-                if (new Date(parseInt(item[0]) * 1000).getDate() == tomorrow.getDate() && tomorrowMet == 0) {
+                if (new Date(parseInt(item[0]) * 1000).getDate() >= tomorrow.getDate() && tomorrowMet == 0) {
                     console.log('første dato i morgen')
+                    
+                    let thisDay = new Date(item[0]*1000);
+                    let thisWeekDay = thisDay.getDay();
+                    let thisMonth = thisDay.getMonth();
+                    let thisDato = thisDay.getDate();
+
                     tomorrowMet = 1;
                     activityWidget.innerHTML += 
                     `<li class="card">
-                        <p class="">${tomorrow}</p> 
+                        <p class="">Næste skoledag - ${days[thisWeekDay]} d. ${thisDato}. ${months[thisMonth]}</p> 
                     </li>
                     <li class="card">
                         <p class="time ${classShorthands[i]}">${time}</p> 
