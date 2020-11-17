@@ -44,7 +44,6 @@
     grid-area: data;
     margin: 0 auto;
     width: 100%;
-    padding: 1.1vw;
     background-color: #3F4259;
     /* Styling af Bus tider */
 
@@ -60,6 +59,7 @@
     margin: 40px auto;
     width: 400px;
     color: white;
+    padding: 1.1vw;
     font-weight: 600;
     .tid {
         display: grid;

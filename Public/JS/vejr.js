@@ -7,6 +7,7 @@ const proxy = 'https://cors-anywhere.herokuapp.com/';
 
 // API's
 // 1§ vejr eu api
+
 let vejrEuUrl = `${proxy}https://vejr.eu/api.php?location=Aalborg&degree=C%27))`; //henter API ned
 // §2 DarkSky api
 let darkSkyUrl = `${proxy}https://api.darksky.net/forecast/2f35c97a3f5b8edad9aecb3fa76058cb/57.0488,9.9217`;
@@ -100,25 +101,26 @@ function updateClock() {
 function buildIcon(data) {
     const {icon} = data.currently;                  
     // Call getIcon
-    document.querySelector('.icon').src = '../img/svg/weather/' + getIcon(icon) 
+    console.log('hry')
+    document.querySelector('.weather-container').style.backgroundImage =  `url('../img/weather/${getIcon(icon)}')` ; 
 }
 // Check current date and return appropriate src string
 function getIcon(icon) {
    
     switch (icon) {
         // If status === case => then return matching weather icon 
-        case 'clear-day': return "wi-day-sunny.svg";
-        case 'clear-night': return "wi-night-clear.svg";
-        case 'partly-cloudy-day': return "wi-day-cloudy.svg";
-        case 'partly-cloudy-night': return "wi-night-alt-cloudy.svg";
-        case 'cloudy': return "wi-cloudy.svg";
-        case 'lightrain': return "wi-night-rain-mix.svg";
-        case 'occasionalshowers': return "wi-night-rain-mix.svg";
-        case 'rain': return "wi-rain.svg";
-        case 'sleet': return "wi-sleet.svg.svg";
-        case 'snow': return "wi-snow.svg";
-        case 'wind': return "wi-windy.svg";
-        case 'fog': return "wi-fog.svg";
+        case 'clear-day': return "sunny.jpg";
+        case 'clear-night': return "sunny.jpg";
+        case 'partly-cloudy-day': return "sunny.jpg";
+        case 'partly-cloudy-night': return "sunny.jpg";
+        case 'cloudy': return "sunny.jpg";
+        case 'lightrain': return "sunny.jpg";
+        case 'occasionalshowers': return "sunny.jpg";
+        case 'rain': return "sunny.jpg";
+        case 'sleet': return "sunny.jpg";
+        case 'snow': return "sunny.jpg";
+        case 'wind': return "sunny.jpg";
+        case 'fog': return "sunny.jpg";
 
         default: return "";       
     }
