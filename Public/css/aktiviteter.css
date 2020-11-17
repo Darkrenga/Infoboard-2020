@@ -46,7 +46,7 @@
   font-weight: 700;
   width: calc(100% / 3);
   height: 5vh;
-  text-shadow: 0px 1px 5px black;
+  text-shadow: 0px 0px 2px black;
   background-position: center;
   background-size: cover;
   text-transform: uppercase;
@@ -83,7 +83,7 @@
 
 #activity-widget .card:first-of-type .time {
   text-shadow: none;
-  font-size: 16px;
+  font-size: 1.5em;
 }
 
 #activity-widget .card:first-of-type > p {
@@ -114,17 +114,18 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 5px;
+  padding: 10px;
+  font-size: 1.5em;
 }
 
 #activity-widget .card p.time {
   width: 20%;
   font-weight: 700;
-  font-size: 24px;
   margin: 5px 0;
   background-position: center;
   background-size: cover;
   text-shadow: 0px 1px 3px black;
+  font-size: 1.8em;
 }
 
 #activity-widget .card p.location {

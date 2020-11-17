@@ -88,13 +88,6 @@ function updateClock() {
     document.querySelector('.hour').innerHTML = `${hr}`;
     document.querySelector('.para').innerHTML = `${para}`;
     document.querySelector('.minutes').innerHTML = `${min}`;
-
-
-    
-    
-
-
-    
 }
 
 /// Icon

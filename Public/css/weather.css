@@ -23,10 +23,23 @@
 }
 
 .weather-container .time-date-container .col-top {
-  font-weight: 600;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  font-weight: 300;
+  font-size: 1.8em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.weather-container .time-date-container .col-top p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .weather-container .temp-summary-container {
