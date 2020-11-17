@@ -1,12 +1,17 @@
 .weather-container {
     display: flex;
+    position: relative;
     flex-direction: column;
     color: white;
     font-weight: 300;
     background-color: #3F4259;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     .time-date-container {
         font-size: 1.6em;
         text-align: center;
+        z-index: 101;
         .col-top {
             font-weight: 600;
             justify-content: space-between;
@@ -14,7 +19,7 @@
     }
     .temp-summary-container {
         display: flex;
-        
+        z-index: 101;
         justify-content: center;
         margin-top: 40px;
         .col-left {
@@ -31,6 +36,15 @@
                 margin-top: -15%;
             }
         }
+    }
+    .overlay {
+        width: 100%;
+        height: 100%;
+        background: rgb(63,66,89);
+        background: linear-gradient(0deg, rgba(63,66,89,1) 0%, rgba(63,66,89,0) 100%); 
+        z-index: 100;
+        position: absolute;
+        bottom: 0;
     }
     .time
      {
@@ -51,6 +65,9 @@
             height: 90vh;
             align-items: center;
             justify-content: center;
+        }
+        .overlay {
+            display: none;
         }
     }
 }
