@@ -9,7 +9,7 @@ async function fetchData() {
 };
 
 //dette bruges til at ændre vores nuværende klokkeslet
-const addHours = 4;
+const addHours = 0;
 const addSeconds = 3600 * addHours;
 
 //dette er vores nuværende klokkeslet (timestamp)

@@ -69,7 +69,6 @@
       flex-wrap: wrap;
   text-align: center;
   color: #fff;
-  height: 5vh;
   padding-left: 5px;
 }
 
@@ -148,6 +147,17 @@
   margin-right: 13px;
 }
 
+@media (max-width: 1199px) {
+  .aktiviteter-container {
+    display: none;
+  }
+  .aktiviteter-container.active {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
 .aktiviteter-container .header {
   background-color: #3F4259;
   height: 6.5vh;
@@ -155,4 +165,10 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media (max-width: 1199px) {
+  .aktiviteter-container .header {
+    display: none;
+  }
 }

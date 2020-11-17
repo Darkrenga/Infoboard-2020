@@ -8,6 +8,8 @@
         width: 15vw;
         display: flex;
     }
+
+    @media (max-width: 1100px) {display: none}
 }
 
 .time {
@@ -45,6 +47,13 @@
     padding: 1.1vw;
     background-color: #3F4259;
     /* Styling af Bus tider */
+
+    @media (max-width: 1100px) {
+        &.active {
+            display: flex;
+            height: 90vh;
+        }
+    }
 .bus-container {
     display: grid;
     flex-direction: column;

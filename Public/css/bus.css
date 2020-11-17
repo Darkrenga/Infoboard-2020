@@ -59,3 +59,14 @@
 #bus-post .bus-container .container_body .container-content:nth-child(odd), #bus-post #loader .container_body .container-content:nth-child(odd) {
   background: #414B6C;
 }
+
+@media (max-width: 1100px) {
+  #bus-post {
+    display: none;
+  }
+  #bus-post.active {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}

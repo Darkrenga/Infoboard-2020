@@ -14,12 +14,18 @@
     <link rel="stylesheet" href="/Public/css/bus.css">
 </head>
 <body>
+    <nav id="navigation">
+        <ul>
+            <li class="menuButton"><i class="fas fa-cloud"></i></li>
+            <li class="menuButton"><i class="fas fa-bus"></i></li>
+            <li class="menuButton"><i class="fas fa-bars"></i></li>
+        </ul>
+    </nav>
     <main class="main-container">
        
-
         <div class="data-container">
             <!-- Container til vejr api -->
-            <div class="weather-container">
+            <div class="weather-container pageSection">
                 <div class="time-date-container">
                     <div class="col-top">
                         <p class="time">
@@ -41,7 +47,7 @@
                 </div>
             </div>
             <!--BUS-->
-            <div id="bus-post"></div>
+            <div id="bus-post" class="pageSection"></div>
 
             <!--LOGO-->
             <div class="logo-container">
@@ -50,7 +56,7 @@
         </div>
 
         <!--AKTIVITETER CONTAINER-->
-        <div class="aktiviteter-container">
+        <div class="aktiviteter-container pageSection">
             <!--Header label-->
             <div class="header">
                 <img src="/Public/img/svg/event.svg" alt="event">
@@ -81,5 +87,6 @@
     <script src="/Public/JS/news-slider.js"></script>
     <script src="/Public/JS/news.js"></script>
     <script src="/Public/JS/vejr.js"></script>
+    <script src="/Public/JS/responsiveMenu.js"></script>
 </body>
 </html>
