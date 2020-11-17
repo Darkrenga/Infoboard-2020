@@ -41,3 +41,65 @@ body {
       grid-template-rows: auto 71px;
       grid-template-areas: "data aktiviteter info" "data ticker ticker";
 }
+
+@media (max-width: 1100px) {
+  .main-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+}
+
+#navigation {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  #navigation {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 12vh;
+    background-color: #414B6C;
+  }
+  #navigation ul {
+    height: 100%;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    list-style: none;
+  }
+  #navigation ul .menuButton {
+    width: calc(100vw / 3);
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  #navigation ul .menuButton.active {
+    font-size: 1.5em;
+    color: #fff;
+  }
+}

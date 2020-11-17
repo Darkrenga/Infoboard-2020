@@ -15,6 +15,12 @@
   display: flex;
 }
 
+@media (max-width: 1100px) {
+  .logo-container {
+    display: none;
+  }
+}
+
 .time {
   font-size: 45px;
 }
@@ -54,6 +60,15 @@
   padding: 1.1vw;
   background-color: #3F4259;
   /* Styling af Bus tider */
+}
+
+@media (max-width: 1100px) {
+  .data-container.active {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 90vh;
+  }
 }
 
 .data-container .bus-container {

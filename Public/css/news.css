@@ -93,6 +93,12 @@
   height: 80px;
 }
 
+@media (max-width: 1199px) {
+  .middleSection {
+    display: none;
+  }
+}
+
 @-webkit-keyframes ticker {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
@@ -157,6 +163,12 @@
   padding: 0 2rem;
   font-size: 2rem;
   color: white;
+}
+
+@media (max-width: 1199px) {
+  .ticker-wrap {
+    display: none;
+  }
 }
 
 .info-container {

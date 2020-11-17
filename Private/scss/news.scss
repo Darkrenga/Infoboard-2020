@@ -86,6 +86,8 @@ $duration: 80s;
             }  
         }
     }
+
+    @media (max-width: 1199px) {display: none;}
 }
 @keyframes ticker {
   0% {
@@ -144,6 +146,7 @@ $duration: 80s;
     }
 
   }
+  @media (max-width: 1199px) {display: none;}
 
 }
 .info-container {
