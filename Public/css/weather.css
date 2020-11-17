@@ -53,11 +53,15 @@
   margin-top: -15%;
 }
 
-.weather-container .time,
+.weather-container .time {
+  margin: 0;
+  font-size: 1.8em;
+}
+
 .weather-container .month,
 .weather-container .day {
   margin: 0;
-  font-size: 1.8em;
+  font-size: 1.5em;
 }
 
 .blink {

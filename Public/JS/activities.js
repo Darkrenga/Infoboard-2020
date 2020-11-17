@@ -9,7 +9,7 @@ async function fetchData() {
 };
 
 //dette bruges til at ændre vores nuværende klokkeslet
-const addHours = 0;
+const addHours = 5;
 const addSeconds = 3600 * addHours;
 
 //dette er vores nuværende klokkeslet (timestamp)
@@ -96,6 +96,11 @@ async function buildActivitiesView() {
             <p class="topic">Fag</p>
         </li>`;
 
+        let today = new Date();
+        let tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+        let tomorrowMet = 0;
+
     //da aktiviteterne ændrer sig iforhold til tiderne på dagen, så laves de her.
     for (item of activeActivities) {
 
@@ -112,15 +117,40 @@ async function buildActivitiesView() {
 
         let classShorthands = ['we', 'ggr', 'agr', 'abi', 'gr', 'dm', 'mg', 'iw']; //array med forkortelser af navne for klasserne
 
+        
+
         for (let i = 0; i < classShorthands.length; i++) {
             if(classs.search(classShorthands[i]) >= 0) {
-                activityWidget.innerHTML += 
+                // activityWidget.innerHTML += 
+                // `<li class="card">
+                //     <p class="time ${classShorthands[i]}">${time}</p> 
+                //     <p class="location">${item[1]}</p> 
+                //     <p class="class">${classs}</p> 
+                //     <p class="topic">${topic}</p>
+                // </li>`;
+
+                if (new Date(parseInt(item[0]) * 1000).getDate() == tomorrow.getDate() && tomorrowMet == 0) {
+                    console.log('første dato i morgen')
+                    tomorrowMet = 1;
+                    activityWidget.innerHTML += 
+                    `<li class="card">
+                        <p class="">${tomorrow}</p> 
+                    </li>
+                    <li class="card">
+                        <p class="time ${classShorthands[i]}">${time}</p> 
+                        <p class="location">${item[1]}</p> 
+                        <p class="class">${classs}</p> 
+                        <p class="topic">${topic}</p>
+                    </li>`;
+                } else {
+                    activityWidget.innerHTML += 
                 `<li class="card">
                     <p class="time ${classShorthands[i]}">${time}</p> 
                     <p class="location">${item[1]}</p> 
                     <p class="class">${classs}</p> 
                     <p class="topic">${topic}</p>
                 </li>`;
+                }
                 break;
             };
         };
