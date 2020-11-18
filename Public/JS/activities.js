@@ -8,73 +8,19 @@ async function fetchData() {
     return data.result;
 };
 
-//dette bruges til at ændre vores nuværende klokkeslet
-const addHours = 0;
-const addSeconds = 3600 * addHours;
-
-//dette er vores nuværende klokkeslet (timestamp)
-let currentTime = new Date() / 1000 + addSeconds;
-
-//dette er klokkeslettet for starten af dagen (klokken 00:00:00)
-let dayStart = new Date().setHours(0, 0, 0, 0) / 1000;
-
-//her laver vi et array med de forskellige klokkeslet som skemaet har
-const classTimes = [
-    {start: dayStart + 29700, end: dayStart + 33599}, // Kl. 8.15 - 9.20
-    {start: dayStart + 33600, end: dayStart + 37199}, // Kl. 9.20 - 10.20
-    {start: dayStart + 37200, end: dayStart + 41399}, // Kl. 10.20 - 11.30
-    {start: dayStart + 41400, end: dayStart + 46799}, // Kl. 11.30 (12.00) - 13.00
-    {start: dayStart + 46800, end: dayStart + 50399}, // Kl. 13.00 - 14.00
-    {start: dayStart + 50400, end: dayStart + 54900}, // Kl. 14.00 - 15.15
-];
-
 //dette er vores controller som håndterer det data som kommer fra api'en
 async function loadData() {
-
     //her sætter vi data'ene fra fetchData i et array
     let activityArr = [...await fetchData()];
     let amountOfActivities = 13;
 
-    //her finder vi ud af hvilket interval vi er i (hvor vi er i arrayet classTimes)
-    const currentTimeOfDay = classTimes.filter(obj => obj.start <= currentTime && obj.end >= currentTime);
+    const activeActivities = [];
+    for(i = 0; i < amountOfActivities; i++) {
+        let listItem = [activityArr[i].timestamp, activityArr[i].classroom, activityArr[i].class, activityArr[i].name, activityArr[i].friendly_name];
 
-    //her deklererer vi en variabel som kommer til at være et array. dette array kommer fra det filtreret activityArr.
-    let listOfActivities;
-
-    //her kigger vi på om vi befinder os i arrayet classTimes og hvis vi gør så skal den filtrerer activityArr efter hvilke timer som er igang 
-    if (currentTimeOfDay.length) {
-        listOfActivities = activityArr.filter(activity =>
-            activity.timestamp >= currentTimeOfDay[0].start);
-                listOfActivities = listOfActivities.filter((activity, idx) => idx < amountOfActivities);
-
-                if(!listOfActivities.length) {
-                    getFirstActivities()
-                };
-
-             //hvis vi ikke er i arrayet så skal den finde timerne fra næste dag
-    } else {
-        getFirstActivities()
-    };
-
-    //dette er funktionen som finder timerne for den næste dag
-    function getFirstActivities() {
-        let firstKey = activityArr[0];
-        listOfActivities = activityArr.filter(activity => activity.timestamp <= (firstKey.timestamp + 3899));
-
-        return listOfActivities;
+        activeActivities.push(listItem)
     }
 
-    //her deklererer vi en konstant som er et array af de timer som er aktive
-    const activeActivities = [];
-
-    //hvis vi er inde for et interval i classTimes så tager vi de filtreret aktiviteter og indsætter(mapper) dem i arrayet activeActivities.
-    listOfActivities.map(activity => {
-        const listItem = [activity.timestamp, activity.classroom, activity.class, activity.name, activity.friendly_name];
-
-        activeActivities.push(listItem);        
-    });
-
-    //her returner vi konstanten activeActivities, så vi kan bruge den i en senere funktion 
     return activeActivities;
 };
 
