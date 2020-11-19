@@ -109,5 +109,29 @@ async function buildActivitiesView() {
         </li>`;
 };
 
-buildActivitiesView();
-setInterval(() => {buildActivitiesView()}, 60000);
+featureCheck();
+
+function featureCheck() {
+    let onlineStatus = checkOnlineStatus(); // true = online, false = offline
+
+    if (onlineStatus) { // Hvis online byg normal view
+        buildActivitiesView();
+        setInterval(() => {buildActivitiesView()}, 60000);
+    } else { // Hvis offline byg intet internet view
+        noInternetView()
+    }
+}
+
+function checkOnlineStatus() {
+    if (window.navigator.onLine) { // Returner true hvis online
+        return true;
+    } else { // Ellers returner false
+        return false;
+    }
+}
+
+function noInternetView() {
+    let activityWidget = document.querySelector("#activity-widget"); // Aktivitets widget container
+
+    activityWidget.innerHTML = '<p>Intet internet, makker</p>'; // Html
+}
