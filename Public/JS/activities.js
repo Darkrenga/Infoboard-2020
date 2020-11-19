@@ -1,11 +1,16 @@
 async function fetchData() {
     //her henter vi data fra api'et
     let response = await fetch('https://api.mediehuset.net/infoboard/activities');
-    //tjekker vi om det er af json format
-    let data = await response.json();
 
-    //hvis det er det, så kan vi tilgå data'en i andre funktioner
-    return data.result;
+    if (response.status == '200') {
+        //tjekker vi om det er af json format
+        let data = await response.json();
+
+        //hvis det er det, så kan vi tilgå data'en i andre funktioner
+        return data.result;
+    } else {
+        
+    }
 };
 
 //dette er vores controller som håndterer det data som kommer fra api'en
