@@ -3,7 +3,7 @@ loadingscreen();
 buildfetch();
 
 function buildfetch(){
-    fetch('http://xmlopen.rejseplanen.dk/bin/rest.exe/multiDepartureBoard?id1=851400602&id2=851973402&rttime&format=json&useBus=1')
+    fetch('https://xmlopen.rejseplanen.dk/bin/rest.exe/multiDepartureBoard?id1=851400602&id2=851973402&rttime&format=json&useBus=1')
     .then(res => res.json())
     .then((out) => {
         buildview(out);
