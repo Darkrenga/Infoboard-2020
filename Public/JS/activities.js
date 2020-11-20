@@ -75,29 +75,38 @@ async function buildActivitiesView() {
 
         for (let i = 0; i < classShorthands.length; i++) {
             if(classs.search(classShorthands[i]) >= 0) {
-                if (new Date(parseInt(item[0]) * 1000).getDate() >= tomorrow.getDate() && tomorrowMet == 0) { // Hvis aktivitets dato er lig med eller større end dato i morgen
-                    let comingClassDay = new Date(item[0] * 1000); // Aktivites timestamp laves til dato
 
-                    tomorrowMet = 1; // Sættes til 1 så if sætningens betingelser ikke mødes igen
-                    activityWidget.innerHTML += 
+                try {
+                    if (new Date(parseInt(item[0]) * 1000).getDate() >= tomorrow.getDate() && tomorrowMet == 0) { // Hvis aktivitets dato er lig med eller større end dato i morgen
+                        let comingClassDay = new Date(item[0] * 1000); // Aktivites timestamp laves til dato
+    
+                        tomorrowMet = 1; // Sættes til 1 så if sætningens betingelser ikke mødes igen
+                        activityWidget.innerHTML += 
+                        `<li class="card">
+                            <p class="">Næste skoledag - ${days[comingClassDay.getDay()]} d. ${comingClassDay.getDate()}. ${months[comingClassDay.getMonth()]}</p> 
+                        </li>
+                        <li class="card">
+                            <p class="time ${classShorthands[i]}">${time}</p> 
+                            <p class="location">${item[1]}</p> 
+                            <p class="class">${classs}</p> 
+                            <p class="topic">${topic}</p>
+                        </li>`;
+                    } else {
+                        activityWidget.innerHTML += 
                     `<li class="card">
-                        <p class="">Næste skoledag - ${days[comingClassDay.getDay()]} d. ${comingClassDay.getDate()}. ${months[comingClassDay.getMonth()]}</p> 
-                    </li>
-                    <li class="card">
                         <p class="time ${classShorthands[i]}">${time}</p> 
                         <p class="location">${item[1]}</p> 
                         <p class="class">${classs}</p> 
                         <p class="topic">${topic}</p>
                     </li>`;
-                } else {
-                    activityWidget.innerHTML += 
-                `<li class="card">
-                    <p class="time ${classShorthands[i]}">${time}</p> 
-                    <p class="location">${item[1]}</p> 
-                    <p class="class">${classs}</p> 
-                    <p class="topic">${topic}</p>
-                </li>`;
+                    }
                 }
+                catch(err) {
+                    console.log(err.message)
+                    activityWidget.innerHTML += `${err.message}`
+                }
+
+                
                 break;
             };
         };
