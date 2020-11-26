@@ -121,7 +121,7 @@ function featureCheck() {
 
     if (onlineStatus) { // Hvis online byg normal view
         buildActivitiesView();
-        setTimeout(() => {buildActivitiesView()}, 20000);
+        setTimeout(() => {buildActivitiesView()}, 60000);
     } else { // Hvis offline byg intet internet view
         noInternetView()
     }
