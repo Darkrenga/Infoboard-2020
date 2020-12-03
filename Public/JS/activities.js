@@ -1,109 +1,109 @@
-async function fetchData() {
-    //her henter vi data fra api'et
-    let response = await fetch('https://api.mediehuset.net/infoboard/activities');
+fetchActivityData();
+setTimeout(() => {fetchActivityData()}, 60000);
 
-    if (response.status == '200') {
-        //tjekker vi om det er af json format
-        let data = await response.json();
+let activitiesContainer = document.querySelector('#activities-container');
 
-        //hvis det er det, så kan vi tilgå data'en i andre funktioner
-        return data.result;
-    } else {
-        
-    }
-};
+function fetchActivityData() {
+    fetch('https://api.mediehuset.net/infoboard/activities')
+        .then(response => response.json())
+        .then(data => handleActivityData(data.result))
+        .catch(error => console.log('error', error));
+}
 
-//dette er vores controller som håndterer det data som kommer fra api'en
-async function loadData() {
-    //her sætter vi data'ene fra fetchData i et array
-    let activityArr = [...await fetchData()];
-    let amountOfActivities = 13;
+function handleActivityData(allData) {
+    let wantedData = [] // Array der skal indeholde objekter med ønsket data
 
-    const activeActivities = [];
-    for(i = 0; i < amountOfActivities; i++) {
-        let listItem = [activityArr[i].timestamp, activityArr[i].classroom, activityArr[i].class, activityArr[i].name, activityArr[i].friendly_name];
-
-        activeActivities.push(listItem)
+    for (data of allData) {
+        wantedData.push({name: data.name, friendly_name: data.friendly_name, class: data.class, classroom: data.classroom, timestamp: data.timestamp * 1000}); // Ønsket data pushes til wantedData
     }
 
-    return activeActivities;
-};
+    // let singleClassArray; // Variabel der midlertidigt vil holde arrays med klasser
+    // let sortedArray = [] // Array der vil indeholde arrays sorteret efter klasser
 
-//her laver vi vores view funktion
-async function buildActivitiesView() {
+    // while (wantedData.length > 0) { // Vi looper så længe der er indhold i array med ønsket data 
+    //     let firstClassName = wantedData[0].class; // Navn på første klasse i array med ønsket data
+    //     singleClassArray = wantedData.filter(d => d.class == firstClassName); // Finder alle objekter med samme klasse og tilføjer til arrayet singleClassArray
+    //     singleClassArray.length = 2; // Fjerner alle objeter fra singleClassArray udover de to første
+    //     sortedArray.push(singleClassArray); // Pusher singleClassArray ind i sortedArray
+    //     wantedData = wantedData.filter(d => d.class !== firstClassName); // Finder alle objekter med samme klasse og fjerner disse fra arrayet wantedData 
+    // }
 
-    //her indsætter vi data'ene fra loadData funktionen i et array
-    let activeActivities = [...await loadData()];
+    let newarray = []
+    let firstDateArray = [];
     
-    //her deklererer vi en variabel som er vores activityWidget
-    let activityWidget = document.querySelector("#activity-widget");
+    while (wantedData.length > 0) {
+        let firstDate = new Date(wantedData[0].timestamp).getDate();
+        firstDateArray = wantedData.filter(d => new Date(d.timestamp).getDate() == firstDate)
+        wantedData = wantedData.filter(d => new Date(d.timestamp).getDate() !== firstDate)
+        newarray.push(firstDateArray)
+    }
 
-    //da der altid skal ligge en liste i toppen af widgeten, så indsætter vi den her.
-    activityWidget.innerHTML = 
-        `<li class="card">
-            <p class="time">Tid</p> 
-            <p class="location">Lokale</p> 
-            <p class="class">Hold</p> 
-            <p class="topic">Fag</p>
-        </li>`;
+    let classesToShow = 1;
+    let singleClassArray = []
+    let newarray2 = []
+    let hjsdffjkhsdfkj = [];
 
-    // Variabler til at undersøge om aktiviteten afvikles dagsdato eller senere
-    let today = new Date(); // Dagsdato
-    let tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1); // 24 timer fra nu
-    let tomorrowMet = 0; // Sættes til 1 når første aktivitet fra senere er fundet
+    for (i = 0; i < newarray.length; i++) {
+        newarray2 = [];
+        while (newarray[i].length > 0) {
+            
+            let firstClassName = newarray[i][0].class;
+            singleClassArray = newarray[i].filter(d => d.class == firstClassName);
+            newarray[i] = newarray[i].filter(d => d.class !== firstClassName);
+            singleClassArray.length = classesToShow;
 
-    // Arrays med navne på dage og måneder
-    let days = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
-    let months = ['januar', 'febuar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december'];
-
-    //da aktiviteterne ændrer sig iforhold til tiderne på dagen, så laves de her.
-    for (item of activeActivities) {
-
-        //her deklererer vi et par variabler
-        let date = new Date(item[0] * 1000);
-        let time = `${date.getHours()}:${(date.getMinutes()<10?'0':'') + date.getMinutes()}`;
-        let classs = `${item[2]}`;
-
-        //dette gør at hvis der ikke findet et friendly_name så bruger den bare det normale name
-        let topic = item[4];
-            if (item[4] == '' || item[4] == null) {
-                topic = item[3];
+            if (newarray2[newarray2.length - 1] && singleClassArray[0].classroom == newarray2[newarray2.length - 1][0].classroom) {
+                newarray2[newarray2.length - 1][0].class += ` & ${singleClassArray[0].class}`
+            } else {
+                newarray2.push(singleClassArray)
             }
+        }
 
-        let classShorthands = ['we', 'ggr', 'agr', 'abi', 'gr', 'dm', 'mg', 'iw']; //array med forkortelser af navne for klasserne
+        firstDateArray = {date: setDate(newarray2[0][0].timestamp), array: newarray2}
 
-        for (let i = 0; i < classShorthands.length; i++) {
-            if(classs.search(classShorthands[i]) >= 0) {
-                if (new Date(parseInt(item[0]) * 1000).getDate() >= tomorrow.getDate() && tomorrowMet == 0) { // Hvis aktivitets dato er lig med eller større end dato i morgen
-                    let comingClassDay = new Date(item[0] * 1000); // Aktivites timestamp laves til dato
+        hjsdffjkhsdfkj.push(firstDateArray)
+    }
 
-                    tomorrowMet = 1; // Sættes til 1 så if sætningens betingelser ikke mødes igen
-                    activityWidget.innerHTML += 
-                    `<li class="card">
-                        <p class="">Næste skoledag - ${days[comingClassDay.getDay()]} d. ${comingClassDay.getDate()}. ${months[comingClassDay.getMonth()]}</p> 
-                    </li>
-                    <li class="card">
-                        <p class="time ${classShorthands[i]}">${time}</p> 
-                        <p class="location">${item[1]}</p> 
-                        <p class="class">${classs}</p> 
-                        <p class="topic">${topic}</p>
-                    </li>`;
-                } else {
-                    activityWidget.innerHTML += 
-                `<li class="card">
-                    <p class="time ${classShorthands[i]}">${time}</p> 
-                    <p class="location">${item[1]}</p> 
-                    <p class="class">${classs}</p> 
-                    <p class="topic">${topic}</p>
-                </li>`;
-                }
-                break;
-            };
-        };
-    };
+    buildActivityView(hjsdffjkhsdfkj)
+}
 
-    activityWidget.innerHTML += 
+function setDate(timestamp) {
+    const days = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
+    const months = ['januar', 'febuar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december'];
+
+    return `${days[new Date(timestamp).getDay()]} d. ${new Date(timestamp).getDate()}. ${months[new Date(timestamp).getMonth()]}`
+}
+
+
+let showToday = true;
+
+function buildActivityView(sortedData) {
+    activitiesContainer.innerHTML = '';
+
+    if (showToday == true) {
+        let html = `<div><h2>${sortedData[0].date}</h2>`;
+            
+        sortedData[0].array.forEach(classInfo => {
+            html += `<div class="${getShorthand(classInfo[0].class)}"><h3>${getClassTitle(getShorthand(classInfo[0].class))} - ${classInfo[0].class}</h3><p class="heading"><span>Tid</span><span>Lokale</span><span>Fag</span></p>${setClasses(classInfo)}</div>`;
+    
+        })
+    
+        html += `</div>`;
+        activitiesContainer.insertAdjacentHTML('beforeend', html);
+    } else {
+        sortedData.forEach(dayInfo => {
+            let html = `<div><h2>${dayInfo.date}</h2>`;
+    
+            dayInfo.array.forEach(classInfo => {
+                html += `<div class="${getShorthand(classInfo[0].class)}"><h3>${getClassTitle(getShorthand(classInfo[0].class))} - ${classInfo[0].class}</h3>${setClasses(classInfo)}</div>`;
+            })
+    
+            html += `</div>`;
+            activitiesContainer.insertAdjacentHTML('beforeend', html);
+        })
+    }
+
+    activitiesContainer.innerHTML += 
         `<li class="card">
             <p class="classes mg">Mediegrafiker</p>  
             <p class="classes dm">Digitale Medier</p>
@@ -112,31 +112,70 @@ async function buildActivitiesView() {
             <p class="classes gr">Grafisk Tekniker</p>  
             <p class="classes iw">Anden Uddannelse</p>  
         </li>`;
-};
+}
 
-featureCheck();
+function setClasses(classInfo) {
+    let html = ''
 
-function featureCheck() {
-    let onlineStatus = checkOnlineStatus(); // true = online, false = offline
+    classInfo.forEach(info => {
+        let className = info.friendly_name;
+    
+        if (className == '' || className == null) {
+            className = info.name;
+        }
 
-    if (onlineStatus) { // Hvis online byg normal view
-        buildActivitiesView();
-        setTimeout(() => {buildActivitiesView()}, 60000);
-    } else { // Hvis offline byg intet internet view
-        noInternetView()
+        html += `<p><span>Kl. ${setTime(info.timestamp)}</span><span>${info.classroom}</span><span>${className}</span></p>`
+    })
+
+    return html;
+}
+
+function setTime(timestamp) {
+    let date = new Date(timestamp);
+    let time = `${date.getHours()}:${(date.getMinutes()<10?'0':'') + date.getMinutes()}`;
+
+    return time;
+}
+
+function getShorthand(className) {
+    let classShorthands = ['we', 'ggr', 'agr', 'abi', 'gr', 'dm', 'mg', 'iw']; //array med forkortelser af navne for klasserne
+
+    for (i = 0; i < classShorthands.length; i++) {
+        if (className.search(classShorthands[i]) >= 0) {
+            return classShorthands[i];
+        }
     }
 }
 
-function checkOnlineStatus() {
-    if (window.navigator.onLine) { // Returner true hvis online
-        return true;
-    } else { // Ellers returner false
-        return false;
+function getClassTitle(classShorthand) {
+    switch (classShorthand) {
+        case 'we':
+            classTitle = 'Webudvikler';
+            break;
+        case 'ggr':
+            classTitle = "Grafisk Tekniker";
+            break;
+        case 'agr':
+            classTitle = "AMU";
+            break;
+        case 'abi':
+            classTitle = "AMU";
+            break;
+        case 'gr':
+            classTitle = "Grafisk Tekniker";
+            break;
+        case 'dm':
+            classTitle = "Digital Media";
+            break;
+        case 'mg':
+            classTitle = "Mediegrafiker";
+            break;
+        case 'iw':
+            classTitle = "It, Web & Medier";
+            break;
+        default:
+            classTitle = 'Ukendt udd.';
     }
-}
 
-function noInternetView() {
-    let activityWidget = document.querySelector("#activity-widget"); // Aktivitets widget container
-
-    activityWidget.innerHTML = '<p>Intet internet, makker</p>'; // Html
+    return classTitle;
 }
