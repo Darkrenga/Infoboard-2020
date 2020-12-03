@@ -28,46 +28,46 @@ function handleActivityData(allData) {
     //     wantedData = wantedData.filter(d => d.class !== firstClassName); // Finder alle objekter med samme klasse og fjerner disse fra arrayet wantedData 
     // }
 
-    let newarray = []
-    let firstDateArray = [];
+    let sortedByDateArray = []; // Array der skal indeholde klasser sorteret efter dato
+    let oneDateArray = []; // Array der bruges til at holde en datos klasser, inden de pushes til sortedByDateArray
     
-    while (wantedData.length > 0) {
-        let firstDate = new Date(wantedData[0].timestamp).getDate();
-        firstDateArray = wantedData.filter(d => new Date(d.timestamp).getDate() == firstDate)
-        wantedData = wantedData.filter(d => new Date(d.timestamp).getDate() !== firstDate)
-        newarray.push(firstDateArray)
+    while (wantedData.length > 0) { // Vores data sorteres efter dato
+        let firstDate = new Date(wantedData[0].timestamp).getDate(); // Første dato i array findes
+
+        oneDateArray = wantedData.filter(d => new Date(d.timestamp).getDate() == firstDate) // Alle klasser med samme dato tilføjes
+        wantedData = wantedData.filter(d => new Date(d.timestamp).getDate() !== firstDate) // Alle klasser med samme dato fjernes
+        sortedByDateArray.push(oneDateArray) // Alle klasser med samme dato pushes til sortedByDateArray
     }
 
-    let classesToShow = 1;
-    let singleClassArray = []
-    let newarray2 = []
-    let hjsdffjkhsdfkj = [];
+    let classesToShow = 2; // Antal klasser til hver uddannelse vi ønsker at vise
+    let singleClassArray = []; // Array der bruges til at holde hver uddannelses klasser på den pågældende dato, inden de pushes til allClassesArray 
+    let allClassesArray = []; // Array der der bruges til at holde alle uddannelsesers klasser på den pågældende dato, inden de pushes til sortedClassesArray
+    let sortedClassesArray = []; // Array der skal indeholde info sorteret efter dato og klasser
 
-    for (i = 0; i < newarray.length; i++) {
-        newarray2 = [];
-        while (newarray[i].length > 0) {
-            
-            let firstClassName = newarray[i][0].class;
-            singleClassArray = newarray[i].filter(d => d.class == firstClassName);
-            newarray[i] = newarray[i].filter(d => d.class !== firstClassName);
-            singleClassArray.length = classesToShow;
+    for (i = 0; i < sortedByDateArray.length; i++) { // Vi looper data inddelt efter dato for også at sortere efter klasse
+        allClassesArray = []; // Nulstil allClassesArray
+        while (sortedByDateArray[i].length > 0) { // Loop så længe der er indhold i sortedByDateArray[i]
+            let firstClassName = sortedByDateArray[i][0].class; // Navnet på første klasse i array
 
-            if (newarray2[newarray2.length - 1] && singleClassArray[0].classroom == newarray2[newarray2.length - 1][0].classroom) {
-                newarray2[newarray2.length - 1][0].class += ` & ${singleClassArray[0].class}`
+            singleClassArray = sortedByDateArray[i].filter(d => d.class == firstClassName); // Alle klasser med samme navn tilføjes
+            sortedByDateArray[i] = sortedByDateArray[i].filter(d => d.class !== firstClassName); // Alle klasser med samme navn fjernes
+            singleClassArray.length = classesToShow; // Array forkortes ned, alt efter hvor mange klasser vi ønsker at vise til hver uddannelse
+
+            if (allClassesArray[allClassesArray.length - 1] && singleClassArray[0].classroom == allClassesArray[allClassesArray.length - 1][0].classroom) { // Vi tjekker om forrige uddannelse foregår i samme lokale, hvis de gør tilføjes nuværende uddannelse klassenavn til forrige uddannelses klassenavn
+                allClassesArray[allClassesArray.length - 1][0].class += ` & ${singleClassArray[0].class}`
             } else {
-                newarray2.push(singleClassArray)
+                allClassesArray.push(singleClassArray)
             }
         }
 
-        firstDateArray = {date: setDate(newarray2[0][0].timestamp), array: newarray2}
-
-        hjsdffjkhsdfkj.push(firstDateArray)
+        let firstDateObject = {date: setDate(allClassesArray[0][0].timestamp), array: allClassesArray}; // Opretter objekt der består af dato og array med uddannelse der består af arrays med klasser på denne dato
+        sortedClassesArray.push(firstDateObject);
     }
 
-    buildActivityView(hjsdffjkhsdfkj)
+    buildActivityView(sortedClassesArray); // Vi kalder view med vores sorterede data
 }
 
-function setDate(timestamp) {
+function setDate(timestamp) { // Returnerer dato som string
     const days = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
     const months = ['januar', 'febuar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december'];
 
@@ -75,7 +75,7 @@ function setDate(timestamp) {
 }
 
 
-let showToday = true;
+let showToday = true; // Viser kun første dato når denne er true. Viser alle datoer når denne er false
 
 function buildActivityView(sortedData) {
     activitiesContainer.innerHTML = '';
