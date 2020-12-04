@@ -35,7 +35,7 @@ Vi bygger projektet i disse teknologier, da det skal udvikles på skoles server.
 For at komme i gang med projektet skal du gøre
 ### Save path
 ``` JSON
-"savePath": "~/../../PUBLIC/css/"
+"savePath": "~/../../css/"
 ```
 
 ### Branch
@@ -108,5 +108,5 @@ I denne .md fil skal der stå ting som de andre du arbejder sammen med skal taje
 * Sass Compiler settings
   * I skal ændre jeres path i sass compiler til
 ```JSON
-"savePath": "~/../../PUBLIC/css/"
+"savePath": "~/../../css/"
 ```

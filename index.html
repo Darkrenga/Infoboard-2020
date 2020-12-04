@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <!-- Indsæt et tab icon af mediehuset -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2477420e06.js" crossorigin="anonymous"></script>
+    <title>Infoboard</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/aktiviteter.css">
+    <link rel="stylesheet" href="/css/info.css">
+    <link rel="stylesheet" href="/css/news.css">
+    <link rel="stylesheet" href="/css/weather.css">
+    <link rel="stylesheet" href="/css/bus.css">
+</head>
+<body>
+    <nav id="navigation">
+        <ul>
+            <li class="menuButton active"><i class="fas fa-cloud"></i></li>
+            <li class="menuButton"><i class="fas fa-bus"></i></li>
+            <li class="menuButton"><i class="fas fa-bars"></i></li>
+        </ul>
+    </nav>
+    <main class="main-container">
+       
+        <div class="data-container">
+            <!-- Container til vejr api -->
+            <div class="weather-container pageSection active">
+                <div class="time-date-container">
+                    <div class="col-top">
+                        <p class="time">
+                            <span class="hour"></span>
+                            <span class="para blink"></span>
+                            <span class="minutes"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="temp-summary-container">
+                    <div class="col-left">
+                        <p class="temp">12°</p>
+                        <p class="summary">Cloudy</p>
+                    </div>
+                </div>
+                <div class="overlay">
+                    
+                </div>
+            </div>
+            <!--BUS-->
+            <div id="bus-post" class="pageSection"></div>
+
+            <!--LOGO-->
+            <div class="logo-container">
+                <img class="logo" src="/img/svg/logo.svg" alt="mediehuset techcollege">
+            </div>
+        </div>
+
+        <!--AKTIVITETER CONTAINER-->
+        <div class="aktiviteter-container pageSection">
+            <!--Header label-->
+            <div class="header">
+                <img src="/img/svg/event.svg" alt="event">
+                <h3>Skema</h3>
+                <p class="month"></p>
+            </div>
+            <ul id="activity-widget"></ul>
+            <div id="activities-container"></div>
+        </div>
+     
+
+  <!--INFO CONTAINER-->
+        <div class="middleSection">
+            <div class="info">
+                <i class="fas fa-info-circle"></i>
+                <h3 class="info-header">INFO</h3>
+            </div>
+            <div id="player">
+            </div>
+            <div id="news-container"></div>
+        </div>   
+        <div class="ticker-wrap">
+            <img src="/img/svg/News.svg" alt="">
+        </div>
+    </main>
+
+    <section class="mobileApp">
+        <article>
+            <img src="/img/svg/qr-code.svg" alt="">
+        </article>
+    </section>
+    
+    <script src="/JS/activities.js"></script>
+    <script src="/JS/bus.js"></script>
+    <!--<script src="/JS/app.js"></script>-->
+    <script src="/JS/media.js"></script>
+    <script src="/JS/news-slider.js"></script>
+    <script src="/JS/news.js"></script>
+    <script src="/JS/vejr.js"></script>
+    <script src="/JS/responsiveMenu.js"></script>
+</body>
+</html>
