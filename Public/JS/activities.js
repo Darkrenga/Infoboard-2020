@@ -1,5 +1,5 @@
 fetchActivityData();
-setTimeout(() => {fetchActivityData()}, 60000);
+setInterval(() => {fetchActivityData()}, 60000);
 
 let activitiesContainer = document.querySelector('#activities-container');
 
